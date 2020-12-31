@@ -126,3 +126,7 @@ class TorchEASE:
         pred_df["predicted_items"] = _output_preds
         self.logger.info("Predictions are returned to user")
         return pred_df
+
+    def score_predictions(self):
+        # TODO: Implement this with some common metrics
+        return None

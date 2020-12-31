@@ -31,3 +31,5 @@ Example usage:
 ```
 python train.py training.csv users.csv username book_name book_score
 ```
+
+Tuning the `regularization` parameter seems to have little overall impact.
