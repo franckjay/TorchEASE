@@ -93,7 +93,7 @@ class TestBasicMetrics(unittest.TestCase):
     def test_partial_misses(self):
         self.assertTrue(
             hit_rate_k(self.partial_hits, actual_col="item", pred_col="predicted")
-            == 0.5
+            == 5./8.
         )
 
 

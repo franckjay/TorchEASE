@@ -34,7 +34,7 @@ class TestBasicFunction(unittest.TestCase):
         )
 
     def test_torch_implicit(self):
-        self.tei = TorchEASE(self.df, user_col="user", item_col="item")
+        self.tei = TorchEASE(self.df, user_col="user", item_col="item", reg=0.05)
         self.tei.fit()
         self.assertEqual(
             round(self.tei.B[0].sum().item(), 3),
@@ -45,13 +45,14 @@ class TestBasicFunction(unittest.TestCase):
                 3,
             ),
         )
+        print (self.tei.sparse.to_dense()[0] @ self.tei.B)
         self.assertTrue(
             torch.argmax(self.tei.sparse.to_dense()[0] @ self.tei.B) == torch.tensor(3)
         )
 
     def test_torch_explicit(self):
         self.tee = TorchEASE(
-            self.df, user_col="user", item_col="item", score_col="score"
+            self.df, user_col="user", item_col="item", score_col="score", reg=0.05
         )
         self.tee.fit()
         self.assertTrue(

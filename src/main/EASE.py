@@ -7,7 +7,7 @@ import pandas as pd
 
 class TorchEASE:
     def __init__(
-        self, train, user_col="user_id", item_col="item_id", score_col=None, reg=0.05
+        self, train, user_col="user_id", item_col="item_id", score_col=None, reg=250.0
     ):
         """
 
@@ -15,7 +15,8 @@ class TorchEASE:
         :param user_col: Column name for users
         :param item_col: Column name for items
         :param score_col: Column name for scores. Implicit feedback otherwise
-        :param reg: Regularization parameter
+        :param reg: Regularization parameter.
+                    Change by orders of magnitude to tune (2e1, 2e2, ...,2e4)
         """
         logging.basicConfig(
             format="%(asctime)s [%(levelname)s] %(name)s - %(message)s",
@@ -54,9 +55,10 @@ class TorchEASE:
             # Implicit values only
             self.values = torch.ones(self.indices.shape[0])
         else:
+            # TODO: Test if score_col works correctly
             self.values = torch.FloatTensor(train[score_col])
-        # TODO: Is Sparse the best implementation?
 
+        # TODO: Is Sparse the best implementation?
         self.sparse = torch.sparse.FloatTensor(self.indices.t(), self.values)
 
         self.logger.info("Sparse data built")

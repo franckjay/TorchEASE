@@ -7,7 +7,7 @@ def hit_rate_k(pred_df, actual_col="item_id", pred_col="predictions"):
     """
 
     pred_df["hit"] = [
-        pred[0] in actual for pred, actual in pred_df[[pred_col, actual_col]].values
+        actual in pred for pred, actual in pred_df[[pred_col, actual_col]].values
     ]
 
     return pred_df["hit"].mean()
