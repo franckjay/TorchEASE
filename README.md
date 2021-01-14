@@ -16,7 +16,7 @@ This PyTorch implementation is much faster than the original Numpy version.
 1. `te_implicit = TorchEASE(df, user_col="user", item_col="item")`
 2. `te_implicit.fit()`
 3. `predictions = te_implicity.predict_all(predict_df)`
-### Explicit interactions:
+### Explicit interactions (UNTESTED):
 1. `te_explicit = TorchEASE(df, user_col="user", item_col="item", score_col="rating")`
 2. `te_explicit.fit()`
 3. `predictions = te_explicit.predict_all(predict_df)`
@@ -32,4 +32,4 @@ Example usage:
 python train.py training.csv users.csv username book_name book_score
 ```
 
-Tuning the `regularization` parameter seems to have little overall impact.
+Tuning the `regularization` parameter on scales from `1E2` - `1E3` seems to be effective 
