@@ -55,7 +55,6 @@ class TorchEASE:
             # Implicit values only
             self.values = torch.ones(self.indices.shape[0])
         else:
-            # TODO: Test if score_col works correctly
             self.values = torch.FloatTensor(train[score_col])
 
         # TODO: Is Sparse the best implementation?
